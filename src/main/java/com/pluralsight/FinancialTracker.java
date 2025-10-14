@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.channels.ScatteringByteChannel;
 import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -40,7 +43,25 @@ public class FinancialTracker {
                 case "X" -> running = false;
                 default -> System.out.println("Invalid option");
             }
+
+            //File I/O
+            public static void loadTransactions(String fileName){
+                try {
+                    if (!file.exist) {
+                        file.produceNewFile;
+                    }
+                } catch (IOException e) {
+                    System.out.println("There is an error creating the file.");
+                }
+
+                try(BufferedReader bufferedReader)
+
+                }
+            }
+
         }
         scanner.close();
     }
+
+
 }
