@@ -41,6 +41,9 @@ public class FinancialTracker {
 
     }
 
+    private static void displayLedgerMenu(Scanner potatoscanner) {
+    }
+
     private static void addPayment(Scanner potatoscanner) {
     }
 
