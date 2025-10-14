@@ -22,10 +22,10 @@ public class FinancialTracker {
         while (codeRunning) {
             System.out.println("\nWelcome to the official Financial Tracker!");
             System.out.println("Please select one of the following options.");
-            System.out.println("A. Please add deposit.");
-            System.out.println("B. Please make a payment.");
-            System.out.println("C. Please see the Ledger.");
-            System.out.println("Exit. Have a good day!");
+            System.out.println("D. Add deposit.");
+            System.out.println("P. Make payment.");
+            System.out.println("L. Please see the Ledger.");
+            System.out.println("X. Exit. Have a good day!");
 
             String selectOption = potatoscanner.nextLine().trim().toUpperCase();
 
@@ -35,7 +35,9 @@ public class FinancialTracker {
                 addPayment(potatoscanner);
             } else if(selectOption.equalsIgnoreCase("C")) {
                 displayLedgerMenu(potatoscanner);
-            } else if(selectOption.equalsIgnoreCase("D"));
+            } else if(selectOption.equalsIgnoreCase("D")) {
+                runCode(potatoscanner);
+            }
         }
 
 
