@@ -78,6 +78,8 @@ public class FinancialTracker {
 
                     System.out.println("The transactions all loaded successfully.");
 
+                } catch (IOException e) {
+                    System.out.println("There is an error reading the file.");
                 }
             }
 
