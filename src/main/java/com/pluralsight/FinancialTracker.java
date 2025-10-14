@@ -29,13 +29,13 @@ public class FinancialTracker {
 
             String selectOption = potatoscanner.nextLine().trim().toUpperCase();
 
-            if(selectOption.equals("A")) {
+            if(selectOption.equalsIgnoreCase("A")) {
                 addDeposit(potatoscanner);
-            } else if(selectOption.equals("B")) {
+            } else if(selectOption.equalsIgnoreCase("B")) {
                 addPayment(potatoscanner);
-            } else if(selectOption.equals("C")) {
+            } else if(selectOption.equalsIgnoreCase("C")) {
                 displayLedgerMenu(potatoscanner);
-            }
+            } else if(selectOption.equalsIgnoreCase("D"));
         }
 
 
