@@ -5,9 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.channels.ScatteringByteChannel;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class FinancialTracker {
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
@@ -56,7 +59,24 @@ public class FinancialTracker {
                 }
 
                 try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+                    String runningLine;
+                    while ((runningLine = bufferedReader.readLine()) != null) {
+                        String[] parts = runningLine.split("\\.|");
+                        if(parts.length == 5) {
+                            LocalDate date1 = LocalDate.parse(parts[0].trim());
+                            LocalTime time1 = LocalTime.parse(parts[1].trim());
+                            String description1 = parts[2].trim();
+                            String vendor1 = parts[3].trim();
+                            double amount1 = Double.parseDouble(parts[4].trim());
 
+                            Transaction list = new Transaction(date1, time1, description1, vendor1, amount1);
+                            transactions.add(list);
+
+
+                        }
+                    }
+
+                    System.out.println("The transactions all loaded successfully.");
 
                 }
             }
