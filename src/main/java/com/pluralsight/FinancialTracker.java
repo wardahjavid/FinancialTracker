@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.channels.ScatteringByteChannel;
 import java.sql.Date;
@@ -47,14 +48,15 @@ public class FinancialTracker {
             //File I/O
             public static void loadTransactions(String fileName){
                 try {
-                    if (!file.exist) {
+                    if (!file.yesExist) {
                         file.produceNewFile;
                     }
                 } catch (IOException e) {
                     System.out.println("There is an error creating the file.");
                 }
 
-                try(BufferedReader bufferedReader)
+                try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+
 
                 }
             }
