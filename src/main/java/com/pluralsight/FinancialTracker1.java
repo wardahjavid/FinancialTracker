@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static FinancialTracker1.transactions;
+
 /*
  * Capstone skeleton – personal finance tracker.
  * ------------------------------------------------
@@ -344,15 +346,51 @@ public class FinancialTracker1 {
        ------------------------------------------------------------------ */
     private static void filterTransactionsByDate(LocalDate start, LocalDate end) {
         // TODO – iterate transactions, print those within the range
+        System.out.println("\n These are Transactions from " + start + " to " + end + ".");
+        for (Transaction n : transactions) {
+            LocalDate date = n.getDate1();
+            if ((date.isAfter(start) || date.isEqual(start)) && date.isBefore(end) || date.isEqual(end)) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
     }
 
     private static void filterTransactionsByVendor(String vendor) {
         // TODO – iterate transactions, print those with matching vendor
+        System.out.println("\n The are Transactions for the Vendor " + vendor + ".");
+        for (Transaction n : transactions) {
+            LocalDate date = n.getDate1();
+            if (n.getVendor1().equalsIgnoreCase(vendor)) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
+    }
     }
 
     private static void customSearch(Scanner scanner) {
         // TODO – prompt for any combination of date range, description,
         //        vendor, and exact amount, then display matches
+        System.out.println("\n This is a Custom Search. Please select from the following options. ");
+        System.out.println("Please enter a start date (yyyy-MM-dd). ");
+        String startInput = scanner.nextLine().trim();
+        System.out.println("Please enter an end date (yyyy-MM-dd). ");
+        String endInput = scanner.nextLine().trim();
+        System.out.println("Please enter a vendor name. ");
+        String vendorInput = scanner.nextLine().trim();
+        System.out.println("Please enter a description. ");
+        String descriptionInput = scanner.nextLine().trim();
+        System.out.println("Please enter an amount. ");
+        String amountInput = scanner.nextLine().trim();
+
+        for (Transaction n : FinancialTracker1.transactions) {
+
+
     }
 
     /* ------------------------------------------------------------------
