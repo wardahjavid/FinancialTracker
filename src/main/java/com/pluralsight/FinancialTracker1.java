@@ -71,16 +71,16 @@ public class FinancialTracker {
      * • If the file doesn’t exist, create an empty one so that future writes succeed.
      * • Each line looks like: date|time|description|vendor|amount
      */
-    public static void loadTransactions(String fileName) {
+    public static void loadTransactions(String fileName) throws IOException {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
-        File file = new File(fileName);.
-        try {
-            if (!file.yesExist) {
-                file.produceNewFile;
+        File file = new File(fileName);
+        try {if (!file.exists()) {
+                file.createNewFile();
             }
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            {
                 String runLine;
                 while ((runLine = bufferedReader.readLine()) != null) {
                     String[] parts = runLine.split("\\.|");
@@ -97,51 +97,85 @@ public class FinancialTracker {
                     }
                     bufferedReader.close();
 
-                } catch(IOException e){
-                    System.out.println("Error reading file. Please check if file exists and try again.")
                 }
             }
-            private static void saveTransaction(Transaction new) {
-                try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME,true))) {
-                    bufferedWriter(String.format("%s|%s|%s|%s|%s%.2f%n",
-                    new.getDate1().format(DATE_FMT),
-                    new.getTime1().format(DATE_FMT),
-                    new.getDescription1,
-                    new.getVendor(),
-                    new.getAmount();
 
-                } catch (IOException e) {
-                    System.out.println("There is an error saving the transaction.");
-                }
+        } catch (Exception e) {
+            System.out.println("Error reading file. Please check if file exists and try again.");
+        }
+        private static void saveTransaction(Transaction n) {
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+                bufferedWriter.write(String.format("%s|%s|%s|%s|%.2f%n",
+                        n.getDate1().format(DATE_FMT),
+                        n.getTime1().format(TIME_FMT),
+                        n.getDescription1(),
+                        n.getVendor1(),
+                        n.getAmount1();
+            } catch (IOException e) {
+                System.out.println("Error saving transaction. Please check file paths.");
             }
+        }
+
+    }
+
 
     /* ------------------------------------------------------------------
        Add new transactions
        ------------------------------------------------------------------ */
 
-    /**
-     * Prompt for ONE date+time string in the format
-     * "yyyy-MM-dd HH:mm:ss", plus description, vendor, amount.
-     * Validate that the amount entered is positive.
-     * Store the amount as-is (positive) and append to the file.
-     */
-    private static void addDeposit(Scanner scanner) {
-        System.out.println("\n Add Deposit");
-        System.out.println("Enter date (yyyy-MM-dd) ");
-        LocalDate date = LocalDate.parse(scanner.nextLine().trim());
-        System.out.println("Enter time (HH:mm:ss): ");
-        LocalTime time = LocalTime.parse()
+        private static void addDeposit(Scanner scanner) {
+            System.out.println("\n Add Deposit");
+            System.out.println("Enter date (yyyy-MM-dd) ");
+            LocalDate date1 = LocalDate.parse(scanner.nextLine().trim());
+            System.out.println("Enter time (HH:mm:ss) ");
+            LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
+            System.out.println("Enter description ");
+            String description1 = scanner.nextLine().trim();
+                System.out.println("Enter vendor ");
+                String vendor1 = scanner.nextLine().trim();
+                System.out.println("Enter amount ");
+                double amount1 = Double.parseDouble(scanner.nextLine().trim());
+                if (amount1 < 0) {
+                    System.out.println("Note amount entered must be positive.");
+                    return;
+                }
+                amount1 *= -1;
+                Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
+                transactions.add(n);
+                saveTransaction(n);
+                System.out.println("The payment has been added successfully.");
+            }
+            private static void saveTransaction(Transaction n){
 
-
-    }
-
-    /**
+            }
+            /**
      * Same prompts as addDeposit.
      * Amount must be entered as a positive number,
      * then converted to a negative amount before storing.
      */
     private static void addPayment(Scanner scanner) {
         // TODO
+        System.out.println("\n Make Payments");
+        System.out.println("Enter date (yyyy-MM-dd) ");
+        LocalDate date1 = LocalDate.parse(scanner.nextLine().trim());
+        System.out.println("Enter time (HH:mm:ss) ");
+        LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
+        System.out.println("Enter description ");
+        String description1 = scanner.nextLine().trim();
+        System.out.println("Enter vendor ");
+        String vendor1 = scanner.nextLine().trim();
+        System.out.println("Enter amount ");
+        double amount1 = Double.parseDouble(scanner.nextLine().trim());
+        if (amount1 < 0) {
+            System.out.println("Note amount entered must be positive.");
+            return;
+        }
+        amount1 *= -1;
+        Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
+        transactions.add(n);
+        saveTransaction(n);
+        System.out.println("The payment has been added successfully.");
+
     }
 
     /* ------------------------------------------------------------------
