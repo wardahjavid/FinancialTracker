@@ -71,19 +71,20 @@ public class FinancialTracker {
      * • If the file doesn’t exist, create an empty one so that future writes succeed.
      * • Each line looks like: date|time|description|vendor|amount
      */
-    public static void loadTransactions(String fileName) throws IOException {
+    public static void loadTransactions(String fileName) {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
         File file = new File(fileName);
-        try {if (!file.exists()) {
-                file.createNewFile();
-            }
+        try {
+            if (!file.exists()) {
+            file.createNewFile();
+        }
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             {
                 String runLine;
                 while ((runLine = bufferedReader.readLine()) != null) {
-                    String[] parts = runLine.split("\\.|");
+                    String[] parts = runLine.split("\\|");
 
                     if (parts.length <= 5) {
                         LocalDate date1 = LocalDate.parse(parts[0].trim());
@@ -204,7 +205,11 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format */ }
+    private static void displayLedger() {
+        /* TODO – print all transactions in column format */
+        System.out.println("\n All transactions.");
+
+    }
 
     private static void displayDeposits() { /* TODO – only amount > 0               */ }
 
