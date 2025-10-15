@@ -16,7 +16,7 @@ import java.util.Scanner;
  * A deposit has a positive amount; a payment is stored
  * as a negative amount.
  */
-public class FinancialTracker {
+public class FinancialTracker1 {
 
     /* ------------------------------------------------------------------
        Shared data and formatters
@@ -78,48 +78,29 @@ public class FinancialTracker {
         File file = new File(fileName);
         try {
             if (!file.exists()) {
-            file.createNewFile();
-        }
+                file.createNewFile();
+            }
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            {
-                String runLine;
-                while ((runLine = bufferedReader.readLine()) != null) {
-                    String[] parts = runLine.split("\\|");
+            String runLine;
+            while ((runLine = bufferedReader.readLine()) != null) {
+                String[] parts = runLine.split("\\|");
 
-                    if (parts.length <= 5) {
-                        LocalDate date1 = LocalDate.parse(parts[0].trim());
-                        LocalTime time1 = LocalTime.parse(parts[1].trim());
-                        String description1 = parts[2].trim();
-                        String vendor1 = parts[3].trim();
-                        double amount1 = Double.parseDouble(parts[4].trim());
+                if (parts.length <= 5) {
+                    LocalDate date1 = LocalDate.parse(parts[0].trim());
+                    LocalTime time1 = LocalTime.parse(parts[1].trim());
+                    String description1 = parts[2].trim();
+                    String vendor1 = parts[3].trim();
+                    double amount1 = Double.parseDouble(parts[4].trim());
 
-                        Transaction list = new Transaction(date1, time1, description1, vendor1, amount1);
-                        transactions.add(list);
-                    }
-                    bufferedReader.close();
-
+                    Transaction list = new Transaction(date1, time1, description1, vendor1, amount1);
+                    transactions.add(list);
                 }
             }
-
+            bufferedReader.close();
         } catch (Exception e) {
             System.out.println("Error reading file. Please check if file exists and try again.");
         }
-        private static void saveTransaction(Transaction n) {
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-                bufferedWriter.write(String.format("%s|%s|%s|%s|%.2f%n",
-                        n.getDate1().format(DATE_FMT),
-                        n.getTime1().format(TIME_FMT),
-                        n.getDescription1(),
-                        n.getVendor1(),
-                        n.getAmount1();
-            } catch (IOException e) {
-                System.out.println("Error saving transaction. Please check file paths.");
-            }
-        }
-
     }
-
-
     /* ------------------------------------------------------------------
        Add new transactions
        ------------------------------------------------------------------ */
@@ -142,9 +123,15 @@ public class FinancialTracker {
             System.out.println("The payment has been added successfully.");
             }
 
-            private static void saveTransaction(Transaction n){
-
+            private static void saveTransaction(Transaction n) {
+                try {
+                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
+                    bufferedWriter.write(n.getDate1() + "|" + n.getTime1() + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                } catch (Exception e) {
+                    System.out.println("File not loading.");
+                }
             }
+
             /**
      * Same prompts as addDeposit.
      * Amount must be entered as a positive number,
@@ -208,6 +195,9 @@ public class FinancialTracker {
     private static void displayLedger() {
         /* TODO – print all transactions in column format */
         System.out.println("\n All transactions.");
+        for (Transaction n : transactions) {
+            System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + (n.getVendor1()) + (n.));
+        }
 
     }
 
