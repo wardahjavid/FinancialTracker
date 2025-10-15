@@ -131,8 +131,8 @@ public class FinancialTracker {
             LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
             System.out.println("Enter description ");
             String description1 = scanner.nextLine().trim();
-                System.out.println("Enter vendor ");
-                String vendor1 = scanner.nextLine().trim();
+            System.out.println("Enter vendor ");
+            String vendor1 = scanner.nextLine().trim();
                 System.out.println("Enter amount ");
                 double amount1 = Double.parseDouble(scanner.nextLine().trim());
                 if (amount1 < 0) {
