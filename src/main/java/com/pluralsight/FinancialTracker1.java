@@ -1,8 +1,7 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -76,47 +75,45 @@ public class FinancialTracker {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
-    }
-
-    import java.io.BufferedReader;
-import java.io.FileReader;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-    //File I/O
-    public static void loadTransactions(String fileName){
+        File file = new File(fileName);.
         try {
             if (!file.yesExist) {
                 file.produceNewFile;
-                System.out.println("There is a new file created " + fileName);
             }
-        }
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+                String runLine;
+                while ((runLine = bufferedReader.readLine()) != null) {
+                    String[] parts = runLine.split("\\.|");
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            String runningLine;
-            while ((runningLine = bufferedReader.readLine()) != null) {
-                String[] parts = runningLine.split("\\.|");
-                if(parts.length == 5) {
-                    LocalDate date1 = LocalDate.parse(parts[0].trim());
-                    LocalTime time1 = LocalTime.parse(parts[1].trim());
-                    String description1 = parts[2].trim();
-                    String vendor1 = parts[3].trim();
-                    double amount1 = Double.parseDouble(parts[4].trim());
+                    if (parts.length <= 5) {
+                        LocalDate date1 = LocalDate.parse(parts[0].trim());
+                        LocalTime time1 = LocalTime.parse(parts[1].trim());
+                        String description1 = parts[2].trim();
+                        String vendor1 = parts[3].trim();
+                        double amount1 = Double.parseDouble(parts[4].trim());
 
-                    Transaction list = new Transaction(date1, time1, description1, vendor1, amount1);
-                    transactions.add(list);
+                        Transaction list = new Transaction(date1, time1, description1, vendor1, amount1);
+                        transactions.add(list);
+                    }
+                    bufferedReader.close();
 
-
+                } catch(IOException e){
+                    System.out.println("Error reading file. Please check if file exists and try again.")
                 }
             }
-            scanner.close();
+            private static void saveTransaction(Transaction new) {
+                try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME,true))) {
+                    bufferedWriter(String.format("%s|%s|%s|%s|%s%.2f%n",
+                    new.getDate1().format(DATE_FMT),
+                    new.getTime1().format(DATE_FMT),
+                    new.getDescription1,
+                    new.getVendor(),
+                    new.getAmount();
 
-            System.out.println("The transactions all loaded successfully.");
-
-        } catch (Exception e) {
-            System.out.println("There are problems reading the file.");
-        }
-
+                } catch (IOException e) {
+                    System.out.println("There is an error saving the transaction.");
+                }
+            }
 
     /* ------------------------------------------------------------------
        Add new transactions
@@ -129,7 +126,13 @@ import java.time.LocalTime;
      * Store the amount as-is (positive) and append to the file.
      */
     private static void addDeposit(Scanner scanner) {
-        // TODO
+        System.out.println("\n Add Deposit");
+        System.out.println("Enter date (yyyy-MM-dd) ");
+        LocalDate date = LocalDate.parse(scanner.nextLine().trim());
+        System.out.println("Enter time (HH:mm:ss): ");
+        LocalTime time = LocalTime.parse()
+
+
     }
 
     /**
