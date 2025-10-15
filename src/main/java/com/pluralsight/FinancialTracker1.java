@@ -135,16 +135,12 @@ public class FinancialTracker {
             String vendor1 = scanner.nextLine().trim();
             System.out.println("Enter amount ");
             double amount1 = Double.parseDouble(scanner.nextLine().trim());
-            if (amount1 < 0) {
-                System.out.println("Note amount entered must be positive.");
-                return;
+            Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
+            transactions.add(n);
+            saveTransaction(n);
+            System.out.println("The payment has been added successfully.");
             }
-                amount1 *= -1;
-                Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
-                transactions.add(n);
-                saveTransaction(n);
-                System.out.println("The payment has been added successfully.");
-            }
+
             private static void saveTransaction(Transaction n){
 
             }
