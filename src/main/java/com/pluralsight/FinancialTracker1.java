@@ -1,14 +1,11 @@
 package com.pluralsight;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static FinancialTracker1.transactions;
 
 /*
  * Capstone skeleton – personal finance tracker.
@@ -107,34 +104,34 @@ public class FinancialTracker1 {
        Add new transactions
        ------------------------------------------------------------------ */
 
-        private static void addDeposit(Scanner scanner) {
-            System.out.println("\n Add Deposit");
-            System.out.println("Enter date (yyyy-MM-dd) ");
-            LocalDate date1 = LocalDate.parse(scanner.nextLine().trim());
-            System.out.println("Enter time (HH:mm:ss) ");
-            LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
-            System.out.println("Enter description ");
-            String description1 = scanner.nextLine().trim();
-            System.out.println("Enter vendor ");
-            String vendor1 = scanner.nextLine().trim();
-            System.out.println("Enter amount ");
-            double amount1 = Double.parseDouble(scanner.nextLine().trim());
-            Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
-            transactions.add(n);
-            saveTransaction(n);
-            System.out.println("The payment has been added successfully.");
-            }
+    private static void addDeposit(Scanner scanner) {
+        System.out.println("\n Add Deposit");
+        System.out.println("Enter date (yyyy-MM-dd) ");
+        LocalDate date1 = LocalDate.parse(scanner.nextLine().trim());
+        System.out.println("Enter time (HH:mm:ss) ");
+        LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
+        System.out.println("Enter description ");
+        String description1 = scanner.nextLine().trim();
+        System.out.println("Enter vendor ");
+        String vendor1 = scanner.nextLine().trim();
+        System.out.println("Enter amount ");
+        double amount1 = Double.parseDouble(scanner.nextLine().trim());
+        Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
+        transactions.add(n);
+        saveTransaction(n);
+        System.out.println("The payment has been added successfully.");
+    }
 
-            private static void saveTransaction(Transaction n) {
-                try {
-                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
-                    bufferedWriter.write(n.getDate1() + "|" + n.getTime1() + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
-                } catch (Exception e) {
-                    System.out.println("File not loading.");
-                }
-            }
+    private static void saveTransaction(Transaction n) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
+            bufferedWriter.write(n.getDate1() + "|" + n.getTime1() + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+        } catch (Exception e) {
+            System.out.println("File not loading.");
+        }
+    }
 
-            /**
+    /**
      * Same prompts as addDeposit.
      * Amount must be entered as a positive number,
      * then converted to a negative amount before storing.
@@ -211,7 +208,6 @@ public class FinancialTracker1 {
             }
         }
     }
-
 
 
     private static void displayPayments() {
@@ -371,26 +367,67 @@ public class FinancialTracker1 {
             }
         }
     }
-    }
 
     private static void customSearch(Scanner scanner) {
         // TODO – prompt for any combination of date range, description,
         //        vendor, and exact amount, then display matches
         System.out.println("\n This is a Custom Search. Please select from the following options. ");
-        System.out.println("Please enter a start date (yyyy-MM-dd). ");
+        System.out.println("Please enter a start date (yyyy-MM-dd) or leave blank. ");
         String startInput = scanner.nextLine().trim();
-        System.out.println("Please enter an end date (yyyy-MM-dd). ");
+        System.out.println("Please enter an end date (yyyy-MM-dd) or leave blank. ");
         String endInput = scanner.nextLine().trim();
-        System.out.println("Please enter a vendor name. ");
+        System.out.println("Please enter a vendor name or leave blank. ");
         String vendorInput = scanner.nextLine().trim();
-        System.out.println("Please enter a description. ");
+        System.out.println("Please enter a description or leave blank. ");
         String descriptionInput = scanner.nextLine().trim();
-        System.out.println("Please enter an amount. ");
+        System.out.println("Please enter an amount or leave blank. ");
         String amountInput = scanner.nextLine().trim();
+        System.out.println("Search Results. Good Luck! ");
 
-        for (Transaction n : FinancialTracker1.transactions) {
+        for (Transaction n : transactions) {
+            boolean match = true;
 
+            //This is date range filter.
+            if (!startInput.isEmpty()) {
+                LocalDate start = LocalDate.parse(startInput, DATE_FMT);
+                if (n.getDate1().isBefore(start)) {
+                    match = false;
+                }
+            }
 
+            if (!endInput.isEmpty()) {
+                LocalDate end = LocalDate.parse(startInput, DATE_FMT);
+                if (n.getDate1().isAfter(end)) {
+                    match = false;
+                }
+            }
+
+            //This is vendor filter.
+            if (!vendorInput.isEmpty() && !n.getVendor1().equalsIgnoreCase(vendorInput)) {
+                match = false;
+            }
+
+            //This is a description filter.
+            if (!descriptionInput.isEmpty() && !n.getDescription1().toLowerCase().contains(descriptionInput.toLowerCase())) {
+                match = false;
+            }
+
+            //This is an amount filter.
+            if (!amountInput.isEmpty()) {
+                double amount1 = Double.parseDouble(amountInput);
+                if (n.getAmount1() != amount1) {
+                    match = false;
+                }
+            }
+
+            //This is display if all filters are matched.
+            if (match) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
     }
 
     /* ------------------------------------------------------------------
