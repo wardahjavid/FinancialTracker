@@ -196,7 +196,7 @@ public class FinancialTracker1 {
         /* TODO – print all transactions in column format */
         System.out.println("\n All transactions.");
         for (Transaction n : transactions) {
-            System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + (n.getVendor1()) + (n.));
+            System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" +(n.getVendor1()) + (n.));
         }
 
     }
