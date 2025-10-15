@@ -196,14 +196,31 @@ public class FinancialTracker1 {
         /* TODO – print all transactions in column format */
         System.out.println("\n All transactions.");
         for (Transaction n : transactions) {
-            System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" +(n.getVendor1()) + (n.));
+            System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" + (n.getVendor1()) + "|" + (n.getAmount1()));
         }
-
     }
 
-    private static void displayDeposits() { /* TODO – only amount > 0               */ }
+    private static void displayDeposits() {
+        //TODO – only amount > 0
+        System.out.println("\n See Deposits ");
+        for (Transaction n : transactions) {
+            if (n.getAmount1() > 0) {
+                System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" + (n.getVendor1()) + "|" + (n.getAmount1()));
+            }
+        }
+    }
 
-    private static void displayPayments() { /* TODO – only amount < 0               */ }
+
+
+    private static void displayPayments() {
+        /* TODO – only amount < 0               */
+        System.out.println("\n See Payments ");
+        for (Transaction n : transactions) {
+            if (n.getAmount1() < 0) {
+                System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" + (n.getVendor1()) + "|" + (n.getAmount1()));
+            }
+        }
+    }
 
     /* ------------------------------------------------------------------
        Reports menu
@@ -224,11 +241,31 @@ public class FinancialTracker1 {
             String input = scanner.nextLine().trim();
 
             switch (input) {
-                case "1" -> {/* TODO – month-to-date report */ }
-                case "2" -> {/* TODO – previous month report */ }
-                case "3" -> {/* TODO – year-to-date report   */ }
-                case "4" -> {/* TODO – previous year report  */ }
-                case "5" -> {/* TODO – prompt for vendor then report */ }
+                case "1" -> {
+                    /* TODO – month-to-date report */
+                    monthToDateReport();
+                    break;
+                }
+                case "2" -> {
+                    /* TODO – previous month report */
+                    previousMonthReport();
+                    break;
+                }
+                case "3" -> {
+                    /* TODO – year-to-date report   */
+                    yearToDateReport();
+                    break;
+                }
+                case "4" -> {
+                    /* TODO – previous year report  */
+                    previousYearReport();
+                    break;
+                }
+                case "5" -> {
+                    /* TODO – prompt for vendor then report */
+                    PromptforVendorThenReport(scanner);
+                    break;
+                }
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
