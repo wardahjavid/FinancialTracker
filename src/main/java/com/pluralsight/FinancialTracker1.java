@@ -263,12 +263,78 @@ public class FinancialTracker1 {
                 }
                 case "5" -> {
                     /* TODO – prompt for vendor then report */
-                    PromptforVendorThenReport(scanner);
+                    promptForVendorThenReport(scanner);
                     break;
                 }
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
+            }
+        }
+    }
+
+    private static void monthToDateReport() {
+        System.out.println("\n Month to Date Report ");
+        for (Transaction n : transactions) {
+            if (n.getDate1().getMonthValue() == LocalDate.now().getMonthValue() && n.getDate1().getYear() == LocalDate.now().getYear()) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
+    }
+
+    private static void previousMonthReport() {
+        System.out.println("\n Previous Month Report ");
+        LocalDate previousMonth = LocalDate.now().minusMonths(-1);
+        for (Transaction n : transactions) {
+            if (n.getDate1().getMonthValue() == previousMonth.getMonthValue() && n.getDate1().getYear() == previousMonth.getYear()) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
+    }
+
+    private static void yearToDateReport() {
+        System.out.println("\n Year To Date Report ");
+        int currentYear = LocalDate.now().getYear();
+        for (Transaction n : transactions) {
+            if (n.getDate1().getYear() == currentYear) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
+    }
+
+    private static void previousYearReport() {
+        System.out.println("\n Year To Date Report ");
+        int previousYear = LocalDate.now().getYear() - 1;
+        for (Transaction n : transactions) {
+            if (n.getDate1().getYear() == previousYear) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            }
+        }
+    }
+
+    private static void promptForVendorThenReport(Scanner scanner) {
+        System.out.println("\n Prompt for Vendor Then Report ");
+        System.out.println("Please enter Vendor name. ");
+        String nameVendor = scanner.nextLine().trim();
+        System.out.println("This is the transaction for a vendor " + nameVendor);
+        for (Transaction n : transactions) {
+            if (n.getVendor1().equalsIgnoreCase(nameVendor)) {
+                String formatDate = n.getDate1().format(DATE_FMT);
+                String formatTime = n.getTime1().format(TIME_FMT);
+
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
             }
         }
     }
