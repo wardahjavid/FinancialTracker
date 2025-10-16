@@ -23,15 +23,16 @@ public class FinancialTracker1 {
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
     //This creates a list which stores all Transaction objects. ArrayList allows one to add transactions, remove transaction, and loop through transaction.
     private static final String FILE_NAME = "transactions.csv";
-
+    //This is a file name for saving and loading all transactions. Using .csv in the file name allows for data to be separated by using "|". Workbook 3a, File Reading.
     private static final String DATE_PATTERN = "yyyy-MM-dd";
     private static final String TIME_PATTERN = "HH:mm:ss";
     private static final String DATETIME_PATTERN = DATE_PATTERN + " " + TIME_PATTERN;
+    //These show how date and time should be formatted in JAVA code. Workbook 3a, DateTimeFormatter.
 
     private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern(DATE_PATTERN);
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern(TIME_PATTERN);
     private static final DateTimeFormatter DATETIME_FMT = DateTimeFormatter.ofPattern(DATETIME_PATTERN);
-
+    //The formatter converts String text into numbers or numbers into String text.
     /* ------------------------------------------------------------------
        Main menu
        ------------------------------------------------------------------ */
