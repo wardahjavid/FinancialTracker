@@ -433,7 +433,7 @@ public class FinancialTracker1 {
     /* ------------------------------------------------------------------
        Utility parsers (you can reuse in many places)
        ------------------------------------------------------------------ */
-    private static double parseDate(String s) {
+    private static parseDate(String s) {
         /* TODO – return LocalDate or null */
         if (s == null || s.trim().isEmpty()) {
             return (null);
