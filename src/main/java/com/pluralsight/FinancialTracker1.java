@@ -16,11 +16,12 @@ import java.util.Scanner;
  * as a negative amount.
  */
 public class FinancialTracker1 {
-
+//This defines a public class, all code in this class belongs to the program. (Workbook 1D, Classes and Main Method.)
     /* ------------------------------------------------------------------
        Shared data and formatters
        ------------------------------------------------------------------ */
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
+    //This creates a list which stores all Transaction objects. ArrayList allows one to add transactions, remove transaction, and loop through transaction.
     private static final String FILE_NAME = "transactions.csv";
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";
