@@ -436,14 +436,14 @@ public class FinancialTracker1 {
     private static double parseDate(String s) {
         /* TODO – return LocalDate or null */
         if (s == null || s.trim().isEmpty()) {
-            return null;
+            return (null);
         }
 
         try {
 
             return Double.parseDouble(s.trim());
         } catch (Exception e) {
-            System.out.println("This is an invalid date format.");
+            System.out.println("This is an invalid date format. Please enter date using yyyy-MM-dd.");
         }
     }
 
