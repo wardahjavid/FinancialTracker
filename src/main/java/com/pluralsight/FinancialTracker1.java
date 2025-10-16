@@ -37,10 +37,10 @@ public class FinancialTracker1 {
        Main menu
        ------------------------------------------------------------------ */
     public static void main(String[] args) {
-        loadTransactions(FILE_NAME);
+        loadTransactions(FILE_NAME); //This is where the program starts. This line loads all transactions from the CSV file when the program opens/starts.
 
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
+        Scanner scanner = new Scanner(System.in); //Scanner object is used to read user input from the console (keyboard)..
+        boolean running = true; //This is boolean variable which means
 
         while (running) {
             System.out.println("Welcome to TransactionApp");
