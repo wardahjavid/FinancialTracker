@@ -433,22 +433,29 @@ public class FinancialTracker1 {
     /* ------------------------------------------------------------------
        Utility parsers (you can reuse in many places)
        ------------------------------------------------------------------ */
-    private static parseDate(String s) {
+    private static LocalDate parseDate(String s) {
         /* TODO – return LocalDate or null */
         if (s == null || s.trim().isEmpty()) {
-            return (null);
+            return null;
         }
-
         try {
-
-            return Double.parseDouble(s.trim());
+            return LocalDate.parse(s.trim(), DATE_FMT);
         } catch (Exception e) {
-            System.out.println("This is an invalid date format. Please enter date using yyyy-MM-dd.");
+            System.out.println("This is an invalid date format. Please enter date using yyyy-MM-dd format.");
+            return null;
         }
     }
 
     private static Double parseDouble(String s) {
         /* TODO – return Double   or null */
-        return null;
+        if (s == null || s.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return Double.parseDouble(s.trim());
+        } catch (Exception e) {
+            System.out.println("This is an invalid amount. Please enter a valid number for amount.");
+            return null;
+        }
     }
 }
