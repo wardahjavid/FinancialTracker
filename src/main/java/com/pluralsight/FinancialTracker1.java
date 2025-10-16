@@ -433,11 +433,18 @@ public class FinancialTracker1 {
     /* ------------------------------------------------------------------
        Utility parsers (you can reuse in many places)
        ------------------------------------------------------------------ */
-    private static LocalDate parseDate(String s) {
+    private static double parseDate(String s) {
         /* TODO – return LocalDate or null */
+        if (s == null || s.trim().isEmpty()) {
+            return null;
+        }
 
+        try {
 
-        return null;
+            return Double.parseDouble(s.trim());
+        } catch (Exception e) {
+            System.out.println("This is an invalid date format.");
+        }
     }
 
     private static Double parseDouble(String s) {
