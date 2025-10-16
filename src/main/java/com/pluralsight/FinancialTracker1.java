@@ -155,7 +155,7 @@ public class FinancialTracker1 {
             System.out.println("Note amount entered must be positive.");
             return;
         }
-        amount1 *= -1;
+        amount1 *= -1; //Multiplies a number with -1 to convert the payment into a negative number. Since a payment is money exiting the account, the payment will be an amount as a negative number.
         Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
         transactions.add(n);
         saveTransaction(n);
