@@ -15,7 +15,7 @@ import java.util.Scanner;
  * A deposit has a positive amount; a payment is stored
  * as a negative amount.
  */
-public class FinancialTracker1 {
+public class FinancialTracker {
     //This defines a public class, all code in this class belongs to the program. (Workbook 1D, Classes and Main Method.)
     /* ------------------------------------------------------------------
        Shared data and formatters
