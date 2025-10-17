@@ -16,18 +16,18 @@ import java.util.Scanner;
  * as a negative amount.
  */
 public class FinancialTracker {
-    //This defines a public class, all code in this class belongs to the program. (Workbook 1D, Classes and Main Method.)
+    //This defines a public class, all code in this class belongs to the program.
     /* ------------------------------------------------------------------
        Shared data and formatters
        ------------------------------------------------------------------ */
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
-    //This creates a list which stores all Transaction objects. ArrayList allows one to add transactions, remove transaction, and loop through transaction.
+    //This creates a list which stores all Transaction objects. ArrayList allows one to add transactions, remove transaction, and loop through transactions.
     private static final String FILE_NAME = "transactions.csv";
-    //This is a file name for saving and loading all transactions. Using .csv in the file name allows for data to be separated by using "|". Workbook 3a, File Reading.
+    //This is a file name for saving and loading all transactions. Using .csv in the file name allows for data to be separated by using "|".
     private static final String DATE_PATTERN = "yyyy-MM-dd";
     private static final String TIME_PATTERN = "HH:mm:ss";
     private static final String DATETIME_PATTERN = DATE_PATTERN + " " + TIME_PATTERN;
-    //These show how date and time should be formatted in JAVA code. Workbook 3a, DateTimeFormatter.
+    //These show how date and time should be formatted in JAVA code.
 
     private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern(DATE_PATTERN);
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern(TIME_PATTERN);
@@ -39,8 +39,8 @@ public class FinancialTracker {
     public static void main(String[] args) {
         loadTransactions(FILE_NAME); //This is where the program starts. This line loads all transactions from the CSV file when the program opens/starts.
 
-        Scanner scanner = new Scanner(System.in); //Scanner object is used to read user input from the console (keyboard)..
-        boolean running = true; //This is boolean variable which means that
+        Scanner scanner = new Scanner(System.in); //Scanner object is used to read user input from the console (keyboard).
+        boolean running = true;
 
         while (running) {
             System.out.println("Welcome to TransactionApp");
@@ -60,8 +60,6 @@ public class FinancialTracker {
                 case "X" -> running = false;
                 default -> System.out.println("Invalid option");
             } //The `switch` statement chooses which action to run based on what the user types.
-            //The `->` symbol is part of the modern switch syntax in Java. Each case runs a specific method, such as `addDeposit` or `addPayment`.
-            //If the user types `X`, the loop stops and the program ends.
         }
         scanner.close();
     }
@@ -79,7 +77,7 @@ public class FinancialTracker {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
-        File file = new File(fileName); //Creates a file object that represents the CSV file. If the file doesn’t exist, it’s created. This prevents file errors later.
+        File file = new File(fileName); //This line creates a file object that represents the CSV file. If the file doesn’t exist, it’s created. This prevents file errors later.
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -94,13 +92,13 @@ public class FinancialTracker {
                     String description = parts[2].trim();
                     String vendor = parts[3].trim();
                     double amount = Double.parseDouble(parts[4].trim());
-                //Opens the file for reading, line by line. Each line of the CSV file is split into five parts using the pipe symbol (|) as a separator. Each value is converted from text into the correct data type.
+                //This line opens the file for reading, line by line. Each line of the CSV file is split into five parts using the pipe symbol (|) as a separator. Each value is converted from text into the correct data type.
                     //`LocalDate` is used to store the date.
                     //`LocalTime` is used to store the time.
                     //`String` is used to store the description and vendor.
                     //`double` is used to store the amount.
                     Transaction list = new Transaction(date, time, description, vendor, amount);
-                    transactions.add(list); //Creates a new Transaction object and adds it to the list.
+                    transactions.add(list); //This line creates a new Transaction object and adds it to the list.
                 }
             }
             bufferedReader.close();
@@ -139,10 +137,7 @@ public class FinancialTracker {
             bufferedWriter.close();
         } catch (Exception e) {
             System.out.println("Error saving transaction. Please check file.");
-        } //Creates a new Transaction object, adds it to the list, and saves it to the file. The program opens the CSV file in append mode — using `true` ensures that existing data is not overwritten.
-        //It then writes one line containing all the transaction details, with each value separated by a `|` symbol.
-        //After writing, the file is closed to prevent data loss and ensure everything is saved properly.
-
+        } //This line creates a new Transaction object, adds it to the list, and saves it to the file. The program opens the CSV file in append mode — using `true` ensures that existing data is not overwritten.
     }
 
     /**
@@ -167,7 +162,7 @@ public class FinancialTracker {
             System.out.println("Note amount entered must be positive.");
             return;
         }
-        amount *= -1; //Multiplies a number with -1 to convert the payment into a negative number. Since a payment is money exiting the account, the payment will be an amount as a negative number.
+        amount *= -1; //This line multiplies a number with -1 to convert the payment into a negative number. Since a payment is money exiting the account, the payment will be an amount as a negative number.
         Transaction n = new Transaction(date, time, description, vendor, amount);
         transactions.add(n);
         saveTransaction(n);
@@ -232,7 +227,7 @@ public class FinancialTracker {
             if (n.getAmount() < 0) {
                 System.out.println((n.getDate().format(DATE_FMT)) + "|" + (n.getTime().format(TIME_FMT)) + "|" + (n.getDescription()) + "|" + (n.getVendor()) + "|" + (n.getAmount()));
             }
-        }//Displays sub-options for showing all, only deposits, or only payments. These methods display transactions based on their type.
+        }//This displays sub-options for showing all, only deposits, or only payments. These methods display transactions based on their type.
         //The `displayLedger()` method shows all transactions.
         //The `displayDeposits()` method shows only transactions with positive amounts.
         //The `displayPayments()` method shows only transactions with negative amounts.
@@ -315,7 +310,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }//It work the same way as the code above, but it starts January 1st and counts to today.
+        }//It works the same way as the code above, but it starts January 1st and counts to today.
     }
 
     private static void yearToDateReport() {
