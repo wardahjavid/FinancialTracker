@@ -417,7 +417,7 @@ public class FinancialTracker1 {
             }
 
             //This is a description filter.
-            if (!descriptionInput.isEmpty() && !n.getDescription().toLowerCase().contains(descriptionInput.toLowerCase())) {
+            if (!descriptionInput.isEmpty() && !n.getDescription().toLowerCase().equalsIgnoreCase(descriptionInput.toLowerCase())) {
                 match = false;
             }
 
