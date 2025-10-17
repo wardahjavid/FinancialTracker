@@ -50,7 +50,8 @@ public class FinancialTracker {
             System.out.println("L) Ledger");
             System.out.println("X) Exit");
 
-            String input = scanner.nextLine().trim();
+            String input = scanner.nextLine().trim(); //This line displays the main menu and waits for the user to enter input. The `.trim()` method removes any extra spaces so the input is clean and accurate.
+
 
             switch (input.toUpperCase()) {
                 case "D" -> addDeposit(scanner);
@@ -58,7 +59,9 @@ public class FinancialTracker {
                 case "L" -> ledgerMenu(scanner);
                 case "X" -> running = false;
                 default -> System.out.println("Invalid option");
-            }
+            } //The `switch` statement chooses which action to run based on what the user types.
+            //The `->` symbol is part of the modern switch syntax in Java. Each case runs a specific method, such as `addDeposit` or `addPayment`.
+            //If the user types `X`, the loop stops and the program ends.
         }
         scanner.close();
     }
@@ -76,7 +79,7 @@ public class FinancialTracker {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
-        File file = new File(fileName);
+        File file = new File(fileName); //Creates a file object that represents the CSV file. If the file doesn’t exist, it’s created. This prevents file errors later.
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -85,16 +88,19 @@ public class FinancialTracker {
             String runLine;
             while ((runLine = bufferedReader.readLine()) != null) {
                 String[] parts = runLine.split("\\|");
-
                 if (parts.length <= 5) {
                     LocalDate date = LocalDate.parse(parts[0].trim(), DATE_FMT);
                     LocalTime time = LocalTime.parse(parts[1].trim(), TIME_FMT);
                     String description = parts[2].trim();
                     String vendor = parts[3].trim();
                     double amount = Double.parseDouble(parts[4].trim());
-
+                //Opens the file for reading, line by line. Each line of the CSV file is split into five parts using the pipe symbol (|) as a separator. Each value is converted from text into the correct data type.
+                    //`LocalDate` is used to store the date.
+                    //`LocalTime` is used to store the time.
+                    //`String` is used to store the description and vendor.
+                    //`double` is used to store the amount.
                     Transaction list = new Transaction(date, time, description, vendor, amount);
-                    transactions.add(list);
+                    transactions.add(list); //Creates a new Transaction object and adds it to the list.
                 }
             }
             bufferedReader.close();
@@ -122,7 +128,8 @@ public class FinancialTracker {
         transactions.add(n);
         saveTransaction(n);
         System.out.println("The payment has been added successfully.");
-    }
+    }// This method lets the user enter a new deposit. Reads input for date, time, description, vendor, and amount.
+    //The date and time are parsed using the formatter.
 
     private static void saveTransaction(Transaction n) {
         try {
@@ -132,7 +139,10 @@ public class FinancialTracker {
             bufferedWriter.close();
         } catch (Exception e) {
             System.out.println("Error saving transaction. Please check file.");
-        }
+        } //Creates a new Transaction object, adds it to the list, and saves it to the file. The program opens the CSV file in append mode — using `true` ensures that existing data is not overwritten.
+        //It then writes one line containing all the transaction details, with each value separated by a `|` symbol.
+        //After writing, the file is closed to prevent data loss and ensure everything is saved properly.
+
     }
 
     /**
@@ -162,7 +172,7 @@ public class FinancialTracker {
         transactions.add(n);
         saveTransaction(n);
         System.out.println("The payment has been added successfully.");
-
+        //This is the same as a deposit, but the amount becomes negative because it represents spending.
     }
 
     /* ------------------------------------------------------------------
@@ -190,6 +200,7 @@ public class FinancialTracker {
                 default -> System.out.println("Invalid option");
             }
         }
+
     }
 
     /* ------------------------------------------------------------------
@@ -221,7 +232,11 @@ public class FinancialTracker {
             if (n.getAmount() < 0) {
                 System.out.println((n.getDate().format(DATE_FMT)) + "|" + (n.getTime().format(TIME_FMT)) + "|" + (n.getDescription()) + "|" + (n.getVendor()) + "|" + (n.getAmount()));
             }
-        }
+        }//Displays sub-options for showing all, only deposits, or only payments. These methods display transactions based on their type.
+        //The `displayLedger()` method shows all transactions.
+        //The `displayDeposits()` method shows only transactions with positive amounts.
+        //The `displayPayments()` method shows only transactions with negative amounts.
+        //Each method formats the date and time correctly before printing the results.
     }
 
     /* ------------------------------------------------------------------
@@ -273,7 +288,7 @@ public class FinancialTracker {
                 default -> System.out.println("Invalid option");
             }
         }
-    }
+    } //This section creates different date-based reports:
 
     private static void monthToDateReport() {
         System.out.println("\n Month to Date Report ");
@@ -287,7 +302,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }
+        }//Finds the first day of the current month. Then compares each transaction’s date, it includes only transactions from the first day up to today (ignores future dates).
     }
 
     private static void previousMonthReport() {
@@ -300,7 +315,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }
+        }//Works the same way, but from January 1st until today.
     }
 
     private static void yearToDateReport() {
@@ -315,7 +330,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }
+        }//Prompts for a vendor name and shows all transactions that exactly match it, ignoring capitalization.
     }
 
     private static void previousYearReport() {
