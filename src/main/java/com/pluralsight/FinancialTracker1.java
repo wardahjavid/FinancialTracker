@@ -447,12 +447,7 @@ public class FinancialTracker1 {
         if (s == null || s.trim().isEmpty()) {
             return null;
         }
-        try {
-            return LocalDate.parse(s.trim(), DATE_FMT);
-        } catch (Exception e) {
-            System.out.println("This is an invalid date format. Please enter date using yyyy-MM-dd format.");
-            return null;
-        }
+        return LocalDate.parse(s.trim(), DATE_FMT);
     }
 
     private static Double parseDouble(String s) {
@@ -460,11 +455,6 @@ public class FinancialTracker1 {
         if (s == null || s.trim().isEmpty()) {
             return null;
         }
-        try {
-            return Double.parseDouble(s.trim());
-        } catch (Exception e) {
-            System.out.println("This is an invalid amount. Please enter a valid number for amount.");
-            return null;
-        }
+        return Double.parseDouble(s.trim());
     }
 }
