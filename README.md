@@ -1,4 +1,4 @@
-## **My Financial Tracker App**
+### **My Financial Tracker App**
 The Personal Finance Tracker is a simple and structured Java console program that allows users to record, view, and analyze their financial transactions directly from the command line.
 
 ***User Stories
