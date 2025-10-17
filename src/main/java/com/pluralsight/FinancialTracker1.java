@@ -16,7 +16,7 @@ import java.util.Scanner;
  * as a negative amount.
  */
 public class FinancialTracker1 {
-//This defines a public class, all code in this class belongs to the program. (Workbook 1D, Classes and Main Method.)
+    //This defines a public class, all code in this class belongs to the program. (Workbook 1D, Classes and Main Method.)
     /* ------------------------------------------------------------------
        Shared data and formatters
        ------------------------------------------------------------------ */
