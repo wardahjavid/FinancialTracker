@@ -281,7 +281,7 @@ public class FinancialTracker1 {
         LocalDate monthStart = today.withDayOfMonth(1);
         for (Transaction n : transactions) {
             LocalDate s = n.getDate();
-            if (s.isEqual(monthStart) || s.isAfter(monthStart)) && (s.isEqual(today) || s.isBefore(today)) {
+            if ((s.isEqual(monthStart) || s.isAfter(monthStart)) && (s.isEqual(today) || s.isBefore(today))) {
                 String formatDate = n.getDate().format(DATE_FMT);
                 String formatTime = n.getTime().format(TIME_FMT);
 
@@ -305,9 +305,11 @@ public class FinancialTracker1 {
 
     private static void yearToDateReport() {
         System.out.println("\n Year To Date Report ");
-        int currentYear = LocalDate.now().getYear();
+        LocalDate today = LocalDate.now();
+        LocalDate yearStart = today.withDayOfYear(1);
         for (Transaction n : transactions) {
-            if (n.getDate().getYear() == currentYear) {
+            LocalDate s = n.getDate();
+            if ((s.isEqual(yearStart) || s.isAfter(yearStart)) && (s.isEqual(today) || s.isBefore(today))) {
                 String formatDate = n.getDate().format(DATE_FMT);
                 String formatTime = n.getTime().format(TIME_FMT);
 
