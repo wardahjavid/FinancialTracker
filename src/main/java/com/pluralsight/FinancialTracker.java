@@ -288,7 +288,7 @@ public class FinancialTracker {
                 default -> System.out.println("Invalid option");
             }
         }
-    } //This section creates different date-based reports:
+    }
 
     private static void monthToDateReport() {
         System.out.println("\n Month to Date Report ");
