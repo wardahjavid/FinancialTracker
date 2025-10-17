@@ -1,7 +1,7 @@
 ## **My Financial Tracker App**
 The Personal Finance Tracker is a simple and structured Java console program that allows users to record, view, and analyze their financial transactions directly from the command line.
 
-### **User Stories**
+#### **User Stories**
 - As a user, I want the program load all saved transactions from transactions.csv file, to see past financial history. If the file doesn’t exist, it’s automatically created for future use. Each transaction includes date, time, description, vendor, and amount.
 - As a user, I want to record deposits so that I can keep track of my income and savings.
 - As a user, I want to record payments which represents money leaving my account to track expenses accurately.
