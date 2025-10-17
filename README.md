@@ -65,7 +65,6 @@ This method is interesting because it shows how multiple filters can work togeth
 - Make the transactions colorful.
 - I can organize the data in a table and design the code more, make it look aesthethically pleasing. 
 - I can use functions or new methods I learned about JAVA in the code and test it out, not just code using the functions and methods I learned in class.
-- Capstone 2, I will try to implement all this.
 
 ### **Contributors**
 - Wardah Javid
