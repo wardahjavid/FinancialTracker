@@ -302,7 +302,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }//Finds the first day of the current month. Then compares each transaction’s date, it includes only transactions from the first day up to today (ignores future dates).
+        }//This line finds the first day of the current month, then compares each transaction’s date, it includes only transactions from the first day up to today (ignores future dates).
     }
 
     private static void previousMonthReport() {
@@ -315,7 +315,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }//Works the same way, but from January 1st until today.
+        }//It work the same way as the code above, but it starts January 1st and counts to today.
     }
 
     private static void yearToDateReport() {
@@ -330,7 +330,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }//Prompts for a vendor name and shows all transactions that exactly match it, ignoring capitalization.
+        }//This line prompts for a vendor name and shows all transactions that match it.
     }
 
     private static void previousYearReport() {
@@ -358,7 +358,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }//Lets the user filter by: Start date, End date, Vendor, Description, Exact amount. Each filter checks if the user entered anything. If the user leaves it blank, that filter is skipped.
+        }//This line lets the user filter by Start date, End date, Vendor, Description, Exact amount. Each filter checks if the user entered anything. If the user leaves it blank, that filter is skipped.
     }
 
     /* ------------------------------------------------------------------
@@ -471,6 +471,6 @@ public class FinancialTracker {
             return null;
         }
         return Double.parseDouble(s.trim());
-    }//This program loads existing transactions from a CSV file and allows users to add new deposits or payments. It automatically saves each transaction to the file to keep records up to date. The program can display transactions in different formats, such as showing all transactions, only deposits, or only payments. In addition, it can generate date-based reports, including month-to-date and year-to-date summaries. Users can also perform vendor-specific and custom searches to quickly find particular transactions.
+    }//This line loads existing transactions from a CSV file and allows users to add new deposits or payments. It automatically saves each transaction to the file. The program can display transactions in different formats, such as showing all transactions, only deposits, or only payments.  Users can also perform vendor-specific and custom searches to quickly find particular transactions.
 
 }
