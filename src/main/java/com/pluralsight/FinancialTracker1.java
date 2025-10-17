@@ -109,9 +109,9 @@ public class FinancialTracker1 {
     private static void addDeposit(Scanner scanner) {
         System.out.println("\n Add Deposit");
         System.out.println("Enter date (yyyy-MM-dd) ");
-        LocalDate date = LocalDate.parse(scanner.nextLine().trim());
+        LocalDate date = LocalDate.parse(scanner.nextLine().trim(), DATE_FMT);
         System.out.println("Enter time (HH:mm:ss) ");
-        LocalTime time = LocalTime.parse(scanner.nextLine().trim());
+        LocalTime time = LocalTime.parse(scanner.nextLine().trim(), TIME_FMT);
         System.out.println("Enter description ");
         String description = scanner.nextLine().trim();
         System.out.println("Enter vendor ");
@@ -144,9 +144,9 @@ public class FinancialTracker1 {
         // TODO
         System.out.println("\n Make Payments");
         System.out.println("Enter date (yyyy-MM-dd) ");
-        LocalDate date = LocalDate.parse(scanner.nextLine().trim());
+        LocalDate date = LocalDate.parse(scanner.nextLine().trim(), DATE_FMT);
         System.out.println("Enter time (HH:mm:ss) ");
-        LocalTime time = LocalTime.parse(scanner.nextLine().trim());
+        LocalTime time = LocalTime.parse(scanner.nextLine().trim(), TIME_FMT);
         System.out.println("Enter description ");
         String description = scanner.nextLine().trim();
         System.out.println("Enter vendor ");
