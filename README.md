@@ -13,10 +13,10 @@ The Personal Finance Tracker is a simple and structured Java console program tha
 - As a user, I want to exit the application without losing data, safely close the program, and return to to program later.
 - The prompts show required date and time formats. Inputs are trimmed (.trim()) to prevent extra spaces.
 
-### **Technologies Used**
+#### **Technologies Used**
 Intellij is an IDE which I used to code out the project, Github Project, and linked Intellij with the Github Repository called Financial Tracker.
 
-### **Features Include**
+#### **Features Include**
 The Ledger Menu allows users to view all transactions in different categories:
 - All Transactions – Displays every transaction recorded.
 - Deposits Only – Filters and shows only positive amounts.
@@ -43,30 +43,30 @@ Users can search for transactions using any combination of the following filters
 - Blank fields are ignored, so users can enter data or leave it blank.
 The program checks all filters, displaying matching transactions only.
 
-### **Resources**
+#### **Resources**
 - https://www.w3schools.com/java/default.asp
 - Potato Sensei
 - Workbooks 1, 2, 3, on Brightspace.
 - A special thank you to Professor Raymond Maroun for all his help!!:)
 
-### **GIFS/Screenshots**
+#### **GIFS/Screenshots**
 <img width="853" height="416" alt="image" src="https://github.com/user-attachments/assets/fe4be368-6b4c-4a9b-8e0c-cb2506d10a4b" />
 <img width="478" height="476" alt="image" src="https://github.com/user-attachments/assets/14f621e3-c4ab-4975-8398-2781cb18deb8" />
 <img width="848" height="463" alt="image" src="https://github.com/user-attachments/assets/c15b71cd-6930-430b-8cb3-499beec0610c" />
  csv image
  <img width="635" height="212" alt="image" src="https://github.com/user-attachments/assets/f3ee7414-d0ff-4890-88f3-c40679de9590" />
 
-### **Code I Found Interesting**
+#### **Code I Found Interesting**
 This method is interesting because it shows how multiple filters can work together to find very specific transactions. It allows the user to search using any combination of filters such as date range, vendor name, description, or amount. The program checks each of these filters one by one and only displays the transactions that match everything the user entered.
 <img width="845" height="448" alt="image" src="https://github.com/user-attachments/assets/c2cc472c-35be-4152-9d53-c14513eab22f" />
 
-### **What I Can Do In The Future**
+#### **What I Can Do In The Future**
 - Write a description as title for the reason I did each Commit.
 - Make the transactions colorful.
 - I can organize the data in a table and design the code more, make it look aesthethically pleasing. 
 - I can use functions or new methods I learned about JAVA in the code and test it out, not just code using the functions and methods I learned in class.
 
-### **Contributors**
+#### **Contributors**
 - Wardah Javid
 
 
