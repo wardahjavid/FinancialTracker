@@ -302,11 +302,11 @@ public class FinancialTracker1 {
         System.out.println("\n Year To Date Report ");
         int currentYear = LocalDate.now().getYear();
         for (Transaction n : transactions) {
-            if (n.getDate1().getYear() == currentYear) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+            if (n.getDate().getYear() == currentYear) {
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
@@ -315,11 +315,11 @@ public class FinancialTracker1 {
         System.out.println("\n Year To Date Report ");
         int previousYear = LocalDate.now().getYear() - 1;
         for (Transaction n : transactions) {
-            if (n.getDate1().getYear() == previousYear) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+            if (n.getDate().getYear() == previousYear) {
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
@@ -330,11 +330,11 @@ public class FinancialTracker1 {
         String nameVendor = scanner.nextLine().trim();
         System.out.println("This is the transaction for a vendor " + nameVendor);
         for (Transaction n : transactions) {
-            if (n.getVendor1().equalsIgnoreCase(nameVendor)) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+            if (n.getVendor().equalsIgnoreCase(nameVendor)) {
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
@@ -346,12 +346,12 @@ public class FinancialTracker1 {
         // TODO – iterate transactions, print those within the range
         System.out.println("\n These are Transactions from " + start + " to " + end + ".");
         for (Transaction n : transactions) {
-            LocalDate date = n.getDate1();
+            LocalDate date = n.getDate();
             if ((date.isAfter(start) || date.isEqual(start)) && date.isBefore(end) || date.isEqual(end)) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
@@ -360,12 +360,12 @@ public class FinancialTracker1 {
         // TODO – iterate transactions, print those with matching vendor
         System.out.println("\n The are Transactions for the Vendor " + vendor + ".");
         for (Transaction n : transactions) {
-            LocalDate date = n.getDate1();
-            if (n.getVendor1().equalsIgnoreCase(vendor)) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+            LocalDate date = n.getDate();
+            if (n.getVendor().equalsIgnoreCase(vendor)) {
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
@@ -392,42 +392,42 @@ public class FinancialTracker1 {
             //This is date range filter.
             if (!startInput.isEmpty()) {
                 LocalDate start = LocalDate.parse(startInput, DATE_FMT);
-                if (n.getDate1().isBefore(start)) {
+                if (n.getDate().isBefore(start)) {
                     match = false;
                 }
             }
 
             if (!endInput.isEmpty()) {
                 LocalDate end = LocalDate.parse(startInput, DATE_FMT);
-                if (n.getDate1().isAfter(end)) {
+                if (n.getDate().isAfter(end)) {
                     match = false;
                 }
             }
 
             //This is vendor filter.
-            if (!vendorInput.isEmpty() && !n.getVendor1().equalsIgnoreCase(vendorInput)) {
+            if (!vendorInput.isEmpty() && !n.getVendor().equalsIgnoreCase(vendorInput)) {
                 match = false;
             }
 
             //This is a description filter.
-            if (!descriptionInput.isEmpty() && !n.getDescription1().toLowerCase().contains(descriptionInput.toLowerCase())) {
+            if (!descriptionInput.isEmpty() && !n.getDescription().toLowerCase().contains(descriptionInput.toLowerCase())) {
                 match = false;
             }
 
             //This is an amount filter.
             if (!amountInput.isEmpty()) {
                 double amount1 = Double.parseDouble(amountInput);
-                if (n.getAmount1() != amount1) {
+                if (n.getAmount() != amount1) {
                     match = false;
                 }
             }
 
             //This is display if all filters are matched.
             if (match) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
