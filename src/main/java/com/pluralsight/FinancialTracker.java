@@ -358,7 +358,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }
+        }//Lets the user filter by: Start date, End date, Vendor, Description, Exact amount. Each filter checks if the user entered anything. If the user leaves it blank, that filter is skipped.
     }
 
     /* ------------------------------------------------------------------
@@ -375,7 +375,7 @@ public class FinancialTracker {
 
                 System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
-        }
+        }//These are helper methods that return null if the user leaves a field empty. They can be reused anywhere in the code.
     }
 
     private static void filterTransactionsByVendor(String vendor) {
@@ -471,5 +471,6 @@ public class FinancialTracker {
             return null;
         }
         return Double.parseDouble(s.trim());
-    }
+    }//This program loads existing transactions from a CSV file and allows users to add new deposits or payments. It automatically saves each transaction to the file to keep records up to date. The program can display transactions in different formats, such as showing all transactions, only deposits, or only payments. In addition, it can generate date-based reports, including month-to-date and year-to-date summaries. Users can also perform vendor-specific and custom searches to quickly find particular transactions.
+
 }
