@@ -87,8 +87,8 @@ public class FinancialTracker1 {
                 String[] parts = runLine.split("\\|");
 
                 if (parts.length <= 5) {
-                    LocalDate date = LocalDate.parse(parts[0].trim());
-                    LocalTime time = LocalTime.parse(parts[1].trim());
+                    LocalDate date = LocalDate.parse(parts[0].trim(), DATE_FMT);
+                    LocalTime time = LocalTime.parse(parts[1].trim(), TIME_FMT);
                     String description = parts[2].trim();
                     String vendor = parts[3].trim();
                     double amount = Double.parseDouble(parts[4].trim());
