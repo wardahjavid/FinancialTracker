@@ -128,8 +128,10 @@ public class FinancialTracker1 {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
             bufferedWriter.write(n.getDate() + "|" + n.getTime() + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
+            System.out.println("The transaction was saved successfully.");
+            bufferedWriter.close();
         } catch (Exception e) {
-            System.out.println("File not loading.");
+            System.out.println("Error saving transaction. Please check file.");
         }
     }
 
