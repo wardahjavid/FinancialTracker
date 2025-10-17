@@ -87,13 +87,13 @@ public class FinancialTracker1 {
                 String[] parts = runLine.split("\\|");
 
                 if (parts.length <= 5) {
-                    LocalDate date1 = LocalDate.parse(parts[0].trim());
-                    LocalTime time1 = LocalTime.parse(parts[1].trim());
-                    String description1 = parts[2].trim();
-                    String vendor1 = parts[3].trim();
-                    double amount1 = Double.parseDouble(parts[4].trim());
+                    LocalDate date = LocalDate.parse(parts[0].trim());
+                    LocalTime time = LocalTime.parse(parts[1].trim());
+                    String description = parts[2].trim();
+                    String vendor = parts[3].trim();
+                    double amount = Double.parseDouble(parts[4].trim());
 
-                    Transaction list = new Transaction(date1, time1, description1, vendor1, amount1);
+                    Transaction list = new Transaction(date, time, description, vendor, amount);
                     transactions.add(list);
                 }
             }
@@ -109,16 +109,16 @@ public class FinancialTracker1 {
     private static void addDeposit(Scanner scanner) {
         System.out.println("\n Add Deposit");
         System.out.println("Enter date (yyyy-MM-dd) ");
-        LocalDate date1 = LocalDate.parse(scanner.nextLine().trim());
+        LocalDate date = LocalDate.parse(scanner.nextLine().trim());
         System.out.println("Enter time (HH:mm:ss) ");
-        LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
+        LocalTime time = LocalTime.parse(scanner.nextLine().trim());
         System.out.println("Enter description ");
-        String description1 = scanner.nextLine().trim();
+        String description = scanner.nextLine().trim();
         System.out.println("Enter vendor ");
-        String vendor1 = scanner.nextLine().trim();
+        String vendor = scanner.nextLine().trim();
         System.out.println("Enter amount ");
-        double amount1 = Double.parseDouble(scanner.nextLine().trim());
-        Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
+        double amount = Double.parseDouble(scanner.nextLine().trim());
+        Transaction n = new Transaction(date, time, description, vendor, amount);
         transactions.add(n);
         saveTransaction(n);
         System.out.println("The payment has been added successfully.");
@@ -127,7 +127,7 @@ public class FinancialTracker1 {
     private static void saveTransaction(Transaction n) {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
-            bufferedWriter.write(n.getDate1() + "|" + n.getTime1() + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+            bufferedWriter.write(n.getDate() + "|" + n.getTime() + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
         } catch (Exception e) {
             System.out.println("File not loading.");
         }
@@ -142,21 +142,21 @@ public class FinancialTracker1 {
         // TODO
         System.out.println("\n Make Payments");
         System.out.println("Enter date (yyyy-MM-dd) ");
-        LocalDate date1 = LocalDate.parse(scanner.nextLine().trim());
+        LocalDate date = LocalDate.parse(scanner.nextLine().trim());
         System.out.println("Enter time (HH:mm:ss) ");
-        LocalTime time1 = LocalTime.parse(scanner.nextLine().trim());
+        LocalTime time = LocalTime.parse(scanner.nextLine().trim());
         System.out.println("Enter description ");
-        String description1 = scanner.nextLine().trim();
+        String description = scanner.nextLine().trim();
         System.out.println("Enter vendor ");
-        String vendor1 = scanner.nextLine().trim();
+        String vendor = scanner.nextLine().trim();
         System.out.println("Enter amount ");
-        double amount1 = Double.parseDouble(scanner.nextLine().trim());
-        if (amount1 < 0) {
+        double amount = Double.parseDouble(scanner.nextLine().trim());
+        if (amount < 0) {
             System.out.println("Note amount entered must be positive.");
             return;
         }
-        amount1 *= -1; //Multiplies a number with -1 to convert the payment into a negative number. Since a payment is money exiting the account, the payment will be an amount as a negative number.
-        Transaction n = new Transaction(date1, time1, description1, vendor1, amount1);
+        amount *= -1; //Multiplies a number with -1 to convert the payment into a negative number. Since a payment is money exiting the account, the payment will be an amount as a negative number.
+        Transaction n = new Transaction(date, time, description, vendor, amount);
         transactions.add(n);
         saveTransaction(n);
         System.out.println("The payment has been added successfully.");
@@ -197,7 +197,7 @@ public class FinancialTracker1 {
         /* TODO – print all transactions in column format */
         System.out.println("\n All transactions.");
         for (Transaction n : transactions) {
-            System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" + (n.getVendor1()) + "|" + (n.getAmount1()));
+            System.out.println((n.getDate().format(DATE_FMT)) + "|" + (n.getTime().format(TIME_FMT)) + "|" + (n.getDescription()) + "|" + (n.getVendor()) + "|" + (n.getAmount()));
         }
     }
 
@@ -205,8 +205,8 @@ public class FinancialTracker1 {
         //TODO – only amount > 0
         System.out.println("\n See Deposits ");
         for (Transaction n : transactions) {
-            if (n.getAmount1() > 0) {
-                System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" + (n.getVendor1()) + "|" + (n.getAmount1()));
+            if (n.getAmount() > 0) {
+                System.out.println((n.getDate().format(DATE_FMT)) + "|" + (n.getTime().format(TIME_FMT)) + "|" + (n.getDescription()) + "|" + (n.getVendor()) + "|" + (n.getAmount()));
             }
         }
     }
@@ -216,8 +216,8 @@ public class FinancialTracker1 {
         /* TODO – only amount < 0               */
         System.out.println("\n See Payments ");
         for (Transaction n : transactions) {
-            if (n.getAmount1() < 0) {
-                System.out.println((n.getDate1().format(DATE_FMT)) + "|" + (n.getTime1().format(TIME_FMT)) + "|" + (n.getDescription1()) + "|" + (n.getVendor1()) + "|" + (n.getAmount1()));
+            if (n.getAmount() < 0) {
+                System.out.println((n.getDate().format(DATE_FMT)) + "|" + (n.getTime().format(TIME_FMT)) + "|" + (n.getDescription()) + "|" + (n.getVendor()) + "|" + (n.getAmount()));
             }
         }
     }
@@ -276,11 +276,11 @@ public class FinancialTracker1 {
     private static void monthToDateReport() {
         System.out.println("\n Month to Date Report ");
         for (Transaction n : transactions) {
-            if (n.getDate1().getMonthValue() == LocalDate.now().getMonthValue() && n.getDate1().getYear() == LocalDate.now().getYear()) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+            if (n.getDate().getMonthValue() == LocalDate.now().getMonthValue() && n.getDate().getYear() == LocalDate.now().getYear()) {
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
@@ -289,11 +289,11 @@ public class FinancialTracker1 {
         System.out.println("\n Previous Month Report ");
         LocalDate previousMonth = LocalDate.now().minusMonths(-1);
         for (Transaction n : transactions) {
-            if (n.getDate1().getMonthValue() == previousMonth.getMonthValue() && n.getDate1().getYear() == previousMonth.getYear()) {
-                String formatDate = n.getDate1().format(DATE_FMT);
-                String formatTime = n.getTime1().format(TIME_FMT);
+            if (n.getDate().getMonthValue() == previousMonth.getMonthValue() && n.getDate().getYear() == previousMonth.getYear()) {
+                String formatDate = n.getDate().format(DATE_FMT);
+                String formatTime = n.getTime().format(TIME_FMT);
 
-                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription1() + "|" + n.getVendor1() + "|" + n.getAmount1());
+                System.out.println(formatDate + "|" + formatTime + "|" + n.getDescription() + "|" + n.getVendor() + "|" + n.getAmount());
             }
         }
     }
