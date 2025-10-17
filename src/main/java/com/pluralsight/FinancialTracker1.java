@@ -277,8 +277,11 @@ public class FinancialTracker1 {
 
     private static void monthToDateReport() {
         System.out.println("\n Month to Date Report ");
+        LocalDate today = LocalDate.now();
+        LocalDate monthStart = today.withDayOfMonth(1);
         for (Transaction n : transactions) {
-            if (n.getDate().getMonthValue() == LocalDate.now().getMonthValue() && n.getDate().getYear() == LocalDate.now().getYear()) {
+            LocalDate s = n.getDate();
+            if (s.isEqual(monthStart) || s.isAfter(monthStart)) && (s.isEqual(today) || s.isBefore(today)) {
                 String formatDate = n.getDate().format(DATE_FMT);
                 String formatTime = n.getTime().format(TIME_FMT);
 
