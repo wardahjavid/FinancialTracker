@@ -13,6 +13,9 @@ The Personal Finance Tracker is a simple and structured Java console program tha
 - As a user, I want to exit the application without losing data, safely close the program, and return to to program later.
 - The prompts show required date and time formats. Inputs are trimmed (.trim()) to prevent extra spaces.
 
+  ***Technologies Used
+  Intellij is an IDE which I used to code out the project, Github Project, and linked Intellij with the Github Repository called Financial Tracker.
+
 ***Features Include
 The Ledger Menu allows users to view all transactions in different categories:
 - All Transactions – Displays every transaction recorded.
